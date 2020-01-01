@@ -1,0 +1,50 @@
+@startuml
+interface FabriqueVehicule
+class FabriqueVehiculeElectrique
+class ScooterElectrique
+class AutomobileElectrique
+class FabriqueVehiculeEssence
+class AutomobileEssence
+class ScooterEssence
+class Catalogue
+abstract class Scooter
+abstract class Automobile
+
+FabriqueVehicule : +creeAutomobile()
+FabriqueVehicule : +creeScooter()
+
+FabriqueVehiculeElectrique : +creeAutomobile()
+FabriqueVehiculeElectrique : +creeScooter()
+
+FabriqueVehiculeEssence : +creeAutomobile()
+FabriqueVehiculeEssence : +creeScooter()
+
+FabriqueVehiculeElectrique ..> ScooterElectrique
+FabriqueVehiculeElectrique ..> AutomobileElectrique
+
+FabriqueVehiculeEssence ..> ScooterEssence
+FabriqueVehiculeEssence ..> AutomobileEssence
+
+note top of Scooter : Classe abstraite qui va servir de superclasse \npour les sous-classe ScooterElectrique \net ScooterEssence.
+Scooter  <|-- ScooterElectrique
+Scooter <|--  ScooterEssence
+
+note top of Automobile : Classe abstraite qui va servir de superclasse \npour les sous-classe AutomobileElectrique \net AutomobileEssence.
+Automobile  <|-- AutomobileElectrique
+Automobile <|--  AutomobileEssence
+
+note top of Catalogue : Catalogue prend pour parametre une instance \n implementant l'interface FabriqueVehicule
+Catalogue ..> FabriqueVehicule
+Catalogue ..> Scooter
+Catalogue ..> Automobile
+
+FabriqueVehicule <|.. FabriqueVehiculeEssence
+FabriqueVehicule <|..  FabriqueVehiculeElectrique
+
+note "Ce pattern permet de resoudre le probleme de\n parametrisation de creation d'objets.\nOn doit pouvoir creer des auto et des scooter avec\n comme option electrique ou essence.\n Par la suite, on pourra ajouter de nouveau type sans casser \n la factory" as N1
+note "Deux implementation de l'interface FabriqueVehicule" as N2
+FabriqueVehiculeEssence .. N2
+N2 .. FabriqueVehiculeElectrique
+
+@enduml
+
