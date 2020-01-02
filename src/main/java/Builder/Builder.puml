@@ -43,7 +43,7 @@ LiassePdf --> Liasse
 ConstructeurLiasseVehicule --> "1 #liasse" Liasse
 
 note "classe abstraite qui introduit les methodes permettant de \nconstruire les  differentes parties de la Liasse" as N1
-note "Domaine utilisation du pattern builder :\nle client a besoin de construire des objets complexes sans connaitre\nleur implementation ou ayant plusieurs implementations" as N2
+note "Le but du pattern Builder est d'abstraire la construction d'objets \n complexes de leur implementation pour qu'un client puiise créer\n ces objets complexes sans devoir connaitre les implementations" as N2
 ConstructeurLiasseVehicule .. N1
 note "Classe abstraite qui definit le produit et est defnie dans les \nsous-classe concrete pour les differents types de produits : \n LiasseHtml et LiassePdf" as N3
 N3 .. Liasse
