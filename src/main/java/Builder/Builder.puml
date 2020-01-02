@@ -1,0 +1,50 @@
+Domaine utilisation :
+client a besoin de construire des objets complexes sans connaitre
+leur implementation ou ayant plusieurs implementations
+@startuml
+abstract class Vendeur {
+ +construit()
+}
+abstract ConstructeurLiasseVehicule {
++construitBonDeCommande()
++demandeImmatriculation()
++resultat()
+}
+class ConstructeurLiasseVehiculeHtml{
++construitBonDeCommande()
++demandeImmatriculation()
+}
+class ConstructeurLiasseVehiculePdf{
++construitBonDeCommande()
++demandeImmatriculation()
+}
+abstract class Liasse{
++ajouteDocument()
++imprime()
+}
+class LiasseHtml{
++ajouteDocument()
++imprime()
+}
+class LiassePdf{
++ajouteDocument()
++imprime()
+}
+
+ClientVehicule ..> Vendeur
+ClientVehicule ..> ConstructeurLiasseVehiculeHtml
+ClientVehicule ..> ConstructeurLiasseVehiculePdf
+Vendeur ..> ConstructeurLiasseVehicule
+ConstructeurLiasseVehicule <|--  ConstructeurLiasseVehiculeHtml
+ConstructeurLiasseVehicule <|--  ConstructeurLiasseVehiculePdf
+ConstructeurLiasseVehicule ..> Liasse
+LiasseHtml --> Liasse
+LiassePdf --> Liasse
+ConstructeurLiasseVehicule --> "1 #liasse" Liasse
+
+note "classe abstraite qui introduit les methodes permettant de \nconstruire les  differentes parties de la Liasse" as N1
+note "Domaine utilisation du pattern builder :\nle client a besoin de construire des objets complexes sans connaitre\nleur implementation ou ayant plusieurs implementations" as N2
+ConstructeurLiasseVehicule .. N1
+note "Classe abstraite qui definit le produit et est defnie dans les \nsous-classe concrete pour les differents types de produits : \n LiasseHtml et LiassePdf" as N3
+N3 .. Liasse
+@enduml
