@@ -1,0 +1,48 @@
+@startuml
+together {
+abstract class Client {
++nouvelleCommande()
+#creeCommande()
+}
+note "Commande commande = creeCommande();\nif(commande.valide())\n commande.paye();" as N0
+N0 --> Client
+
+class ClientComptant{
+#creeCommande
+}
+note "return new CommandeComptant()" as N1
+N1 .. ClientComptant
+
+class ClientCredit{
+#creeCommande
+}
+note "return new CommandeCredit()" as N2
+N2 --> ClientCredit
+}
+abstract class Commande{
++valide() : boolean
++paye()
+}
+together {
+class CommandeComptant {
++valide() : boolean
++paye()
+}
+class CommandeCredit{
++valide() : boolean
++paye()
+}
+}
+Client <|-- ClientComptant
+Client <|-- ClientCredit
+
+Commande <|-- CommandeComptant
+Commande <|-- CommandeCredit
+
+CommandeCredit <.. ClientCredit
+CommandeComptant <.. ClientComptant
+
+
+note top of Commande : "But du pattern Factory Method est d'introduire\n une methode abstraite de creation d'objet en\n reportant au sous-classes concretes la creation effective" as N3
+
+@enduml
