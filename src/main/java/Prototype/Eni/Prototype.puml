@@ -1,0 +1,49 @@
+@startuml
+
+abstract class Liasse {
++getDocuments()
+}
+class LiasseClient{
++cree(informations)
++afficher()
++imprime()
+}
+class LiasseVierge{
++ajouter(Document doc)
++retirer(Document doc)
+}
+
+note "Demander à la liasse vierge la liste des documents\nles cloner un par un puis remplir les copies" as N0
+N0 .. Liasse
+
+Liasse <|- LiasseClient
+LiasseVierge -|> Liasse
+
+abstract class Document {
++duplique()
++imprime()
++affiche()
++remplir(informations)
+}
+
+Liasse "1" *-- "1..*" Document
+class BonDeCommande {
++imprime()
++affiche()
+}
+class DemandeImmatriculation{
++imprime()
++affiche()
+}
+class CertificatSession{
++imprime()
++affiche()
+}
+
+Document <|-- BonDeCommande
+Document <|-- DemandeImmatriculation
+Document <|-- CertificatSession
+
+note top of N0 : "Le but du pattern Prototype est de créer de nouveaux objets\npar duplication d'objets existants appelés prototypes (via un clone()).\nOn definit une instance generale, un prototype de liasse,un modele \npour toutes les liasses : la liasse vierge. Et c'est au niveau des instances\nque l'on va definir le contenu précis de la liasse et pas au niveau de la classe."
+
+@enduml
