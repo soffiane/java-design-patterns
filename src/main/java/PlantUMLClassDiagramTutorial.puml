@@ -368,7 +368,7 @@ Normalement, un caractère (C, I, E ou A) est utilisé pour les classes, les int
 Vous pouvez aussi utiliser le caractère de votre choix, en définissant le stéréotype et en ajoutant une couleur, comme par exemple :
 
 @startuml
-class System << (S,#FF7700) Singleton >>
+class System << (S,#FF7700) construction.Singleton >>
 class Date << (D,orchid) >>
 @enduml
 

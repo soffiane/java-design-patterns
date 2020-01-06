@@ -1,0 +1,23 @@
+@startuml
+
+abstract class LiasseVierge{
+-instance : LiasseVierge = null
++instance()
++ajoute(Document)
++retire(Document)
+}
+abstract Singleton{
+-instance : Singleton = null
++instance()
+}
+
+
+note "if (instance == null)\ninstance= new LiasseVierge();\nreturn instance;" as N0
+N0 .. LiasseVierge
+
+note "if (instance == null)\ninstance= new Singleton();\nreturn instance;" as N1
+N1 .. Singleton
+
+
+
+@enduml

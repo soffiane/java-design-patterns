@@ -12,7 +12,7 @@ Les patrons sont divisés en trois types:
 a pour but la creation d'objets regroupés en famikkes sans devoir connaitre les classes concrètes 
 destinées à la creation de ces objets
 
-### Builder
+### construction.Builder
 permet de separer la construction d'objets complexes de leurs implementations de sorte qu'un client
 puisse créer des objets complexes avec des implementations differentes
 
@@ -20,11 +20,11 @@ puisse créer des objets complexes avec des implementations differentes
 a pour but d'introduire une methode abstraite de creation d'un objet en reportant aux sous-classes
 concretes la creation effective de l'objet
 
-### Prototype
+### construction.Prototype
 permet la creation de nouveaux objets par duplication d'objets existants appelés prototypes
 qui disposent de la capacité de clonage
 
-### Singleton
+### construction.Singleton
 permet de s'assusrer qu'une classe ne possède qu'une seule instance et de fournir une methode
 unique retournant cette instance
 
