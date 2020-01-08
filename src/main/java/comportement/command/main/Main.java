@@ -1,11 +1,11 @@
-package construction.patternCommand.main;
+package comportement.command.main;
 
-import construction.patternCommand.concretecommand.CloseFileCommand;
-import construction.patternCommand.concretecommand.OpenFileCommand;
-import construction.patternCommand.concretecommand.WriteFileCommand;
-import construction.patternCommand.invoker.FileInvoker;
-import construction.patternCommand.invoker.FileSystemReceiverUtil;
-import construction.patternCommand.receiver.FileSystemReceiver;
+import comportement.command.concretecommand.CloseFileCommand;
+import comportement.command.concretecommand.OpenFileCommand;
+import comportement.command.concretecommand.WriteFileCommand;
+import comportement.command.invoker.FileInvoker;
+import comportement.command.invoker.FileSystemReceiverUtil;
+import comportement.command.receiver.FileSystemReceiver;
 
 public class Main {
 

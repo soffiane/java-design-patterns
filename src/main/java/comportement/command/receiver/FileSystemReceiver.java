@@ -1,4 +1,4 @@
-package construction.patternCommand.receiver;
+package comportement.command.receiver;
 
 /**
  * Objet receiver : interface avec les methodes possibles

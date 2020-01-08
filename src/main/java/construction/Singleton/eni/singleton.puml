@@ -18,6 +18,6 @@ N0 .. LiasseVierge
 note "if (instance == null)\ninstance= new Singleton();\nreturn instance;" as N1
 N1 .. Singleton
 
-
+note top of N1 : "Le pattern Singleton a pour but de n'avoir qu'une seule instance d'une classe\nPeut servir par exemple dans le pattern Abstract Factory ou on a besoin que d'une\n seule instance de la factory (ou encore la LiasseVierge dont il n'est pas utilise de creer\n des instance)"
 
 @enduml

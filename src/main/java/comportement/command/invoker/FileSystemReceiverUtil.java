@@ -1,8 +1,8 @@
-package construction.patternCommand.invoker;
+package comportement.command.invoker;
 
-import construction.patternCommand.receiver.FileSystemReceiver;
-import construction.patternCommand.receiver.UnixFileSystemReceiver;
-import construction.patternCommand.receiver.WindowsFileSystemReceiver;
+import comportement.command.receiver.FileSystemReceiver;
+import comportement.command.receiver.UnixFileSystemReceiver;
+import comportement.command.receiver.WindowsFileSystemReceiver;
 
 /**
  * Nous allons cr�er un FileSystemReceiverUtil pour fournir un

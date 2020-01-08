@@ -1,7 +1,7 @@
-package construction.patternCommand.concretecommand;
+package comportement.command.concretecommand;
 
-import construction.patternCommand.command.Command;
-import construction.patternCommand.receiver.FileSystemReceiver;
+import comportement.command.command.Command;
+import comportement.command.receiver.FileSystemReceiver;
 
 /**
  * Commande pour ecrire dans un fichier

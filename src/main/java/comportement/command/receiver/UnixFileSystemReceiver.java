@@ -1,4 +1,4 @@
-package construction.patternCommand.receiver;
+package comportement.command.receiver;
 
 /**
  * Receiver : Un objet UnixFileSystemReceiver qui impl�mentera l'interface FileSystem

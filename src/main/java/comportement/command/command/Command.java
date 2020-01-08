@@ -1,4 +1,4 @@
-package construction.patternCommand.command;
+package comportement.command.command;
 
 /**
  * On cr�e l'interface Command qui sera impl�ment�e pour chaque nouvelle commande

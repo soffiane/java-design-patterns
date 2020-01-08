@@ -1,6 +1,6 @@
-package construction.patternCommand.invoker;
+package comportement.command.invoker;
 
-import construction.patternCommand.command.Command;
+import comportement.command.command.Command;
 
 /**
  * Abstraction des commandes
