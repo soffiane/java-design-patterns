@@ -1,0 +1,24 @@
+@startuml
+
+abstract class Societe{
++ajouteVehicule()
++calculCoutEntretien()
++ajouteFiliale()
+}
+class SocieteSansFiliale{
++calculCoutEntretien()
+}
+class SocieteMere{
++calculCoutEntretien()
++ajouteFiliale()
+}
+
+note left of SocieteMere : for(Societe soc:filiales)\nsoc.calculeCoutEntretien();
+
+Societe <|-- SocieteSansFiliale
+Societe <|-- SocieteMere
+
+
+note "le pattern Composite offre un cadre de conception\nd'une composition d'objets dont la profondeur est variable\nExemple des societes et de leur filiales,certaines societes\nont des filiales, d'autres non et il serait laborieux de traiter\ndifferement les deux types de societes car l'app serait dependante\nde la composition interne des societes clientes. Ce pattern resout\nce probleme en utilisant la COMPOSITION RECURSIVE, necessaire\ncar une societe peut posseder des filiales qui ont elle meme des filiales...\nOn parle sourvent de composition en arbre" as N0
+
+@enduml
