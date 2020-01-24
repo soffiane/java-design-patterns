@@ -1,0 +1,40 @@
+@startuml
+object ServeurWeb
+interface Document
+abstract class Document {
++setContenu(contenu)
++dessine()
++imprime()
+}
+abstract ComposantPDf << Component >> {
++pdfFixeContenu(contenu)
++pdfPrepareAffichage()
++pdfRafraichit()
++pdfTermineAffichage()
++pdfEnvoieImprimante()
+}
+interface DocumentHtml{
++setContenu(contenu)
++dessine()
++imprime()
+}
+interface DocumentPdf{
++setContenu(contenu)
++dessine()
++imprime()
+}
+
+ServeurWeb ..> Document
+Document <|.. DocumentHtml
+Document <|.. DocumentPdf
+ComposantPDf "1 #outilPdf" <-- DocumentPdf
+
+note "outilPdf.pdfFixeContenu()" as N0
+note "outilPdf.pdfEnvoieImprimante()" as N1
+note "outilPdf.pdfPrepareAffichage();\noutilPdf.pdfRafraichit();\noutilPdf.pdfTermineAffichage();" as N2
+note bottom : "Le pattern adapter permet de convertir une interface\nexistante en une interface attendue par les clients"
+N0 ... DocumentPdf
+N1 ... DocumentPdf
+N2 ... DocumentPdf
+
+@enduml
