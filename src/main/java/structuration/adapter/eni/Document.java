@@ -1,4 +1,4 @@
-package structuration.adapter;
+package structuration.adapter.eni;
 
 /**
  * introduit la signature des méthodes de l'objet

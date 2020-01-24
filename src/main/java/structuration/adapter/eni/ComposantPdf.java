@@ -1,4 +1,4 @@
-package structuration.adapter;
+package structuration.adapter.eni;
 
 /**
  * ComposantPdf introduit l'objet dont l'interface doit etre adaptée

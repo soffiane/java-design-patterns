@@ -1,4 +1,4 @@
-package structuration.adapter;
+package structuration.adapter.eni;
 
 /**
  * DocumentPdf est l'adapteur

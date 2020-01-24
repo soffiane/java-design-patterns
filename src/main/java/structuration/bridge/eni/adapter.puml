@@ -1,0 +1,38 @@
+@startuml
+
+abstract class FormulaireImmatriculation{
++affiche()
++genereDocument()
++gereSaisie()
+#controleSaisie()
+}
+class FormImmatriculationFrance{
+#controleSaisie()
+}
+class FormImmatriculationLux{
+#controleSaisie()
+}
+interface FormulaireImpl{
++dessineTexte()
++gereZoneSaisie()
+}
+class FormHtmlImpl{
++dessineTexte()
++gereZoneSaisie()
+}
+class FormAppletimpl{
++dessineTexte()
++gereZoneSaisie()
+}
+
+FormulaireImmatriculation <|-- FormImmatriculationFrance
+FormulaireImmatriculation <|-- FormImmatriculationLux
+
+FormulaireImpl "1 #implementation" <|- FormulaireImmatriculation
+FormulaireImpl <|- FormHtmlImpl
+FormulaireImpl <|-- FormAppletimpl
+
+note "Le pattern Bridge permet de separer\nla representation de l'implementation\npour eviter liaison forte entre representation\ndes objets et leur implem" as N0
+note bottom of N0 : "lien entre la classe abstraite et l'implementation\nvia une instance de l'implementation "
+
+@enduml

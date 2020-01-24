@@ -1,4 +1,4 @@
-package structuration.adapter;
+package structuration.adapter.eni;
 
 public class ServeurHtml {
     public static void main(String[] args){
