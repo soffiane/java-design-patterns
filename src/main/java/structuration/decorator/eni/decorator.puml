@@ -1,0 +1,35 @@
+@startuml
+
+object VueCatalogue
+interface ComposantGraphiqueVehicule{
++affiche()
+}
+VueCatalogue .> ComposantGraphiqueVehicule
+class VueVehicule{
++affiche()
+}
+abstract class Decorateur{
++affiche()
+}
+ComposantGraphiqueVehicule <.. VueVehicule
+note bottom of VueVehicule : C'est le composant qui doit etre\d\ndecoré avec de nouvelles fonctionnalités
+ComposantGraphiqueVehicule "1 #composant"<.. Decorateur
+note left of Decorateur : composant.affiche();\ndetient une reference\nvers un composant
+
+class ModeleDecorateur{
+#afficheInfosTechniques()
++affiche()
+}
+class MarqueDecorateur{
+#afficheLogo()
++affiche()
+}
+Decorateur <|-- ModeleDecorateur
+Decorateur <|-- MarqueDecorateur
+note bottom of ModeleDecorateur : sous-classe de Decorator qui va implementer les fonctions\na ajouter au composant(VueVehicule)\nsuper.affiche();\nafficheInfosTechniques();
+note bottom of MarqueDecorateur : sous-classe de Decorator qui va implementer les fonctions\na ajouter au composant(VueVehicule)\nsuper.affiche();\nafficheLogo();
+
+
+note left of VueCatalogue : "Le pattern Decorator permet d'ajouter dynamiquement\ndes fonctionnalités supplémentaires à un objet sans modifier\nl'interface de l'objet et est donc transparent pour le client.\nIci,on veut afficher des données en plus pour les véhicules\n'haut de gamme' sans ajouter de sous-classes pour ces vehicules.\nInutile de recourir à l'héritage car trop puissant pour un simple ajout\nde fonctionnalité et c'est un mecanisme statique. Le Decorator est un\nobjet qui se substitue à l'objet initial et qui le reference. Le Decorator a\nla meme interface " as N0
+
+@enduml

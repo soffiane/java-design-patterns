@@ -1,0 +1,17 @@
+@startuml
+allow_mixing
+interface WebServiceAuto{
++chercheVehicule(prixMoyen, ecartMax)
+}
+component RepriseVehicule
+component GestionDocument
+component Catalogue
+WebServiceAuto ..> RepriseVehicule
+WebServiceAuto ..> GestionDocument
+WebServiceAuto ..> Catalogue
+WebServiceAuto ()- RepriseVehicule
+WebServiceAuto ()- GestionDocument
+WebServiceAuto ()- Catalogue
+
+note top of WebServiceAuto : Pattern Facade permet de regrouper plusieurs interfaces dans\nune seule afin de n'exposer que celle ci au client.Interface de\nniveau eleve qui encapsule des interfaces de plus bas niveau.\nIci,on veut exposer des services via un webservices avec 3 composants :\nCatalogue, GestionDocument et RepriseVehicule. On pourrait juste exposer\nles interfaces separemment mais pas pratique car pas forcement besoin\nde toutes les fonctionnalités et ca manquerait de modularité. Il vaut mieux une\ninterface de plus haut niveau (la Facade)
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+note "Pattern Flyweight (poids de mouche) permet de\npartager efficacement un grand nombre d'objet \nde grain fin. Ici on veut gerer un grand nombre d'options\npour les vehicules donc un grand nombre d'objets de\ngrain fin. En temps normal,il faudrait plein d'instances de\nOptionVehicule alors qu'elles partagent plein d'infos communes.\nFlyweight permet de contourner ce probleme en proposant le \npartage des options. OptionVehicule est le flyweight.\nFabriqueOption fabrique les flyweight.\nVehiculeCommande contient la liste des options et leur prix de vente" as N0
+class VehiculeCommande{
+#prixDeVenteOptions
+}
+class FabriqueOption{
++getOption(nom)
+}
+class OptionVehicule{
+#nom
+#description
+#prixStandard
++affiche(prixDeVente)
+}
+
+FabriqueOption "nom" o-- "1. options" OptionVehicule
+OptionVehicule <--* VehiculeCommande
+VehiculeCommande ..> FabriqueOption
+
+note left of FabriqueOption : if(options.containsKey(nom)\return options.get(nom);\nelse{\nnouvelleOption = new OptionVehicule();\noptions.put(nom,nouvelleOption);\nreturn nouvelleOption;\n}
+@enduml
