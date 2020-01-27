@@ -1,0 +1,29 @@
+@startuml
+note "Proxy est un pattern dont le but est de\nfournir un objet qui va controler l'acces\na un autre. Le proxy a la meme interface\nque l'objet controlé. Ici on a besoin de differer\nle chargement de la video sur la fiche d'un vehicule" as N0
+object VueVehicule
+interface Animation{
++clic()
++dessine()
+}
+class Film{
++clic()
++dessine()
++charge()
++joue()
+}
+class AnimationProxy{
+#photo
++clic()
++dessine()
++dessine(photo)
+}
+
+VueVehicule --> "1 #animation" Animation
+AnimationProxy ..> Animation
+Film ..> Animation
+AnimationProxy --> "0..1 #film" Film
+
+note bottom of AnimationProxy : if (film != null)\nfilm.dessine();\nelse\ndessine(photo);
+note right of AnimationProxy : if(film == null) {\nfilm = new Film();\nfilm.charge();}\nfilm.joue();
+
+@enduml
