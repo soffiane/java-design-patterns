@@ -18,7 +18,7 @@ public abstract class ObjetBase {
             return resulat;
         }
         if(suivant != null){
-            return suivant.getDescription();
+            return suivant.donneDescrition();
         } else {
             return this.descriptionParDefaut();
         }

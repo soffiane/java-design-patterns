@@ -1,0 +1,31 @@
+@startuml
+allowmixing
+note  "Le pattern Command permet de transformer une requete\nen un objet facilitant les operations telles que annulation,mise en file\ndes requetes et leur suivi.Une commande doit pouvoir etre\nannulee mise en attente et tracee et retablie.On veut aussi gerer des\npromotions en fonction de la date d'entree du vehicule en stock\n1ere solution : indiquer au niveau du vehicule si il est soldé ou pas,\nmais un vehicule peut etre soldé plusieurs fois a des taux differents.\n2eme solution : conserver le prix avant la derniere remise mais annulation\ndoit pouvoir etre faite sur une remise qui n'est pas forcement la derniere.\nOn resoud le probleme en transformant la requete en un objet dont les attributs\nsont les parametres de la requetes ainsi que les objets sur lequels ils sont appliqués" as N0
+abstract class CommandeSoldee{
+#tauxRemise
+#dureeStock
++cree(dureeStock,tauxRemise)
++solde(vehicule)
++annule()
++retablit()
+}
+class Catalogue{
++lanceCommande(commande)
++annuleCOmmandeSoldee(ordre)
++retablitCommandeSoldee(ordre)
+}
+class Vehicule{
+#dateEntreeStock
+#prixVente
++getDureeStockage()
++modifiePrix(coefficient)
+}
+
+actor Utilisateur
+Utilisateur ..> CommandeSoldee
+Utilisateur ..> Catalogue
+
+CommandeSoldee "#commandes 1" <--* "ordre" Catalogue
+CommandeSoldee *--> "0..*"Vehicule
+Catalogue *--> "0..*"Vehicule
+@enduml
