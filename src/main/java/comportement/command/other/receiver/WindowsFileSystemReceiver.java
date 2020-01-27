@@ -1,4 +1,4 @@
-package comportement.command.receiver;
+package comportement.command.other.receiver;
 
 /**
  * Receiver : Un objet WindowsFileSystemReceiver qui impl�mentera l'interface FileSystem

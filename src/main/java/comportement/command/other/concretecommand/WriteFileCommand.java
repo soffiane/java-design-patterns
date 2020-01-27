@@ -1,7 +1,7 @@
-package comportement.command.concretecommand;
+package comportement.command.other.concretecommand;
 
-import comportement.command.command.Command;
-import comportement.command.receiver.FileSystemReceiver;
+import comportement.command.other.command.Command;
+import comportement.command.other.receiver.FileSystemReceiver;
 
 /**
  * Commande pour ecrire dans un fichier

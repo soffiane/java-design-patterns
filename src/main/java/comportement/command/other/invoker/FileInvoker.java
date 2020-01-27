@@ -1,6 +1,6 @@
-package comportement.command.invoker;
+package comportement.command.other.invoker;
 
-import comportement.command.command.Command;
+import comportement.command.other.command.Command;
 
 /**
  * Abstraction des commandes

@@ -1,0 +1,24 @@
+@startuml
+note "Ce pattern construit une chaine d'objets telle que\nsi un objet de la chaine ne peut pas repondre a une\nrequete,il puisse transmettre cette requete à l'objet suivant\netc... jusqu'a ce qu'un puisse y repondre. Ici on veut pouvoir\nfournir une description d'un vehicule si elle existe ou une \ndescription par defaut.Les objets sont lies entre eux du plus\nspecifique(le vehicule) au moins specifique(la marque)" as N0
+abstract class ObjetBase{
+#getDescription()
+-descriptionParDefaut()
++donneDescription()
+}
+class Vehicule{
+#getDescription()
+}
+class Modele{
+#getDescription()
+}
+class Marque{
+#getDescription()
+}
+
+ObjetBase -> "#suivant 0..1" ObjetBase
+ObjetBase <|-- Vehicule
+ObjetBase <|-- Modele
+ObjetBase <|-- Marque
+
+note left of ObjetBase : resultat = this.getDescription();\nif(resultat != null)\nreturn resultat;\nif(suivant != null)\nreturn suivant.donneDescription();\nelse\nreturn this.descriptionParDefaut();
+@enduml

@@ -1,4 +1,4 @@
-package comportement.command.receiver;
+package comportement.command.other.receiver;
 
 /**
  * Objet receiver : interface avec les methodes possibles

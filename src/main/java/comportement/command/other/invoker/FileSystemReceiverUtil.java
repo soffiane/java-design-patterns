@@ -1,8 +1,8 @@
-package comportement.command.invoker;
+package comportement.command.other.invoker;
 
-import comportement.command.receiver.FileSystemReceiver;
-import comportement.command.receiver.UnixFileSystemReceiver;
-import comportement.command.receiver.WindowsFileSystemReceiver;
+import comportement.command.other.receiver.FileSystemReceiver;
+import comportement.command.other.receiver.UnixFileSystemReceiver;
+import comportement.command.other.receiver.WindowsFileSystemReceiver;
 
 /**
  * Nous allons cr�er un FileSystemReceiverUtil pour fournir un
