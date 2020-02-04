@@ -1,0 +1,30 @@
+@startuml
+
+note left of Invoker : la telecommande
+class Invoker{
++setCommand(ICommand)
+}
+note left of ICommand : la telecommande a une ou\nplusieurs commandes
+interface ICommand{
++execute()
++unexecute()
+}
+note left of ConcreteCommand : la commande concrete
+class ConcreteCommand{
++execute()
++unexecute()
+}
+note top of Light : la lampe cible
+interface IReceiver{
++action()
+}
+class Light{
++on()
++off()
+}
+
+Invoker --> "0..*" ICommand
+ICommand <|-- ConcreteCommand
+IReceiver <-- ConcreteCommand
+IReceiver <|-- Light
+@enduml

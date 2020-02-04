@@ -1,0 +1,31 @@
+@startuml
+note "Le pattern Interpreter fournit un cadre pour donner une\nrepresentation par objets de la grammaire d'un langage,\nafin d'evaluer en les interpretant des expressions ecrites\ndans ce langage. Ici, on veut creer un moteur de recherche\ndes vehicules par mot-clé selon une certaine grammaire.\nOn va evaluer des expressions selon un arbre syntaxique\ncomposé d'objets : operateurs et operandes" as N0
+abstract class Expression{
++evalue(description)
+}
+class MotCle{
+#motCle
++evalue(description)
+}
+interface OperateurBinaire
+class OperateurEt{
++evalue(description)
+}
+class OperateurOu{
++evalue(description)
+}
+note left of MotCle : fleche vide -|>: relation is-a = heritage
+Expression <|-- MotCle
+Expression <|-- OperateurBinaire
+
+OperateurBinaire <|-- OperateurEt
+OperateurBinaire <|-- OperateurOu
+note left of Expression : fleche normale -> est une\nrelation HAS - A composition
+Expression "1 #operandeGauche" <-- OperateurBinaire
+Expression "1 #operandeDroite" <-- OperateurBinaire
+
+MotCle <|-- ElementTerminal
+MotCle <|-- ElementTerminal2
+note left of ElementTerminal : peut etre un nom de variable\nentiers, nombres reels, chaines...
+
+@enduml
