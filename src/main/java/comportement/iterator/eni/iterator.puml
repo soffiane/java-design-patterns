@@ -1,0 +1,25 @@
+@startuml
+note "Iterator fournit un accès sequentiel à une collection\nd'objet sans se preocupper de son implementation.\nOn implemente une classe Iterator qui fournit les \nmethodes debut, item et suivant. On va parcourir le\ncatalogue de vehicule avec cet Iterator" as N0
+abstract class Collection{
++creeInterateur() : Iterateur
+}
+abstract class Iterateur{
++debut(): Element
++suivant(): Element
++fin() : Element
+}
+class CollectionConcrete{
++creeIterateur():IterateurConcret
+}
+class IterateurConcret
+abstract class Element
+class ElementConcret
+Collection <.. CollectionConcrete
+Collection ..> Iterateur
+Collection -> Element
+Iterateur -> Element
+CollectionConcrete ..> ElementConcret
+CollectionConcrete ..> IterateurConcret
+ElementConcret --|> Element
+IterateurConcret ..> Iterateur
+@enduml
