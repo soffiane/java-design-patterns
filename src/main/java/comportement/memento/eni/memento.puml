@@ -1,0 +1,26 @@
+@startuml
+
+note "Pattern Mememto permet de sauvegarder et restaurer\nl'etat d'un objet sans en violer l'encapsulation.Ici, on veut \ngerer la possibilité de gerer les options d'un vehicule en\ngerant les incompatbilités entre options, ajouter/retirer des\noptions pendant le choix des options. Equivalent du caddie.\nOn veut ausi gerer un historique d'ajour/retrait des options,on\nva memoriser les etats successifs du chariot." as N0
+
+class OptionsVehicule{
++getOptionsIncompatibles()
+}
+class ChariotOption{
++ajouteOption(optionVehicule)
++annule(memento)
+}
+class Memento{
+#etat
++getEtat()
++setEtat()
+}
+
+note bottom of ChariotOption : options = memento.getEtat();
+
+note left of ChariotOption : memento=new Memento();\nmemento.setEtat();\noptions.retire(optionVehicule.getOptionsIncompatibles());\noptions.ajout(optionVehicule);\nreturn memento;
+
+OptionsVehicule -> "0..* #optionsIncompatibles" OptionsVehicule
+OptionsVehicule "#options 0..*" --* ChariotOption
+ChariotOption --> Memento
+
+@enduml
