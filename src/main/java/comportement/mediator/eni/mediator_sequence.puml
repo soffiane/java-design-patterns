@@ -1,0 +1,22 @@
+@startuml
+autonumber "<b>0:"
+participant "menuCoemprunteur: PopupMenu" as A
+activate A
+participant "directeur: Formulaire" as B
+participant "nomCoemprunteur: ZoneSaisie" as C
+participant "prenomCoemprunteur: ZoneSaisie" as D
+
+A -> A: modifie()
+A -> B: controleModifie(controle=this)
+deactivate A
+activate B
+opt "menuCoemprunteur.getValeur() = 'avec coemprunteur' "
+B -> C: saisie()
+activate C
+deactivate C
+B -> D: saisie()
+activate D
+deactivate D
+end
+
+@enduml

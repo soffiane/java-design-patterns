@@ -20,46 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package comportement.iterator.iluwatar;
-
-import java.util.ArrayList;
-import java.util.List;
+package comportement.mediator.iluwatar;
 
 /**
  * 
- * TreasureChest, the collection class.
- * 
+ * Action enumeration.
+ *
  */
-public class TreasureChest {
+public enum Action {
 
-  private List<Item> items;
+  HUNT("hunted a rabbit", "arrives for dinner"), TALE("tells a tale", "comes to listen"), GOLD(
+      "found gold", "takes his share of the gold"), ENEMY("spotted enemies", "runs for cover"), NONE(
+      "", "");
 
-  /**
-   * Constructor
-   */
-  public TreasureChest() {
-    items = new ArrayList<>();
-    items.add(new Item(ItemType.POTION, "Potion of courage"));
-    items.add(new Item(ItemType.RING, "Ring of shadows"));
-    items.add(new Item(ItemType.POTION, "Potion of wisdom"));
-    items.add(new Item(ItemType.POTION, "Potion of blood"));
-    items.add(new Item(ItemType.WEAPON, "Sword of silver +1"));
-    items.add(new Item(ItemType.POTION, "Potion of rust"));
-    items.add(new Item(ItemType.POTION, "Potion of healing"));
-    items.add(new Item(ItemType.RING, "Ring of armor"));
-    items.add(new Item(ItemType.WEAPON, "Steel halberd"));
-    items.add(new Item(ItemType.WEAPON, "Dagger of poison"));
+  private String title;
+  private String description;
+
+  Action(String title, String description) {
+    this.title = title;
+    this.description = description;
   }
 
-  ItemIterator iterator(ItemType itemType) {
-    return new TreasureChestItemIterator(this, itemType);
+  public String getDescription() {
+    return description;
   }
 
-  /**
-   * Get all items
-   */
-  public List<Item> getItems() {
-    return new ArrayList<>(items);
+  public String toString() {
+    return title;
   }
-
 }

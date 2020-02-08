@@ -1,0 +1,39 @@
+@startuml
+note "Pattern Mediator permet de gerer et controler les\ninteractions entre des composants qui ont besoin\nles uns les autres sans qu'il ne doivent se connaitre\nDecoupler les classes, modulariser. Exemple :\ninterfaces utilisateurs dynamiques.Afficher/masquer\ndes attributs, changer le format, ajouter des champs..." as N0
+together {
+class PopupMenu
+class ZoneSaisie
+class Bouton
+}
+class Formulaire{
++controleModifie(controle)
+}
+abstract class Controle{
+#valeur
+#nom
++getValeur()
+#setValeur(valeur)
++getNom()
+#setNom(nom)
++getDirecteur()
+#setDirecteur(directeur)
++saisie()
+#modifie()
+}
+class PopupMenu{
++saisie()
+}
+class ZoneSaisie{
++saisie()
+}
+class Bouton{
++saisie()
+}
+Formulaire "1 #directeur" o-- "1..* #controles" Controle
+Formulaire --> "1..* #controlesCoemprunter" Controle
+PopupMenu --|> Controle
+ZoneSaisie --|> Controle
+Bouton --|> Controle
+Formulaire --> "1 #menuCoemprunter" PopupMenu
+Formulaire -[hidden]> Controle
+@enduml

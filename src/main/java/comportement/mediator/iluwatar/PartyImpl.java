@@ -20,46 +20,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package comportement.iterator.iluwatar;
+package comportement.mediator.iluwatar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 
- * TreasureChest, the collection class.
- * 
+ * Party implementation.
+ *
  */
-public class TreasureChest {
+public class PartyImpl implements Party {
 
-  private List<Item> items;
+  private final List<PartyMember> members;
 
-  /**
-   * Constructor
-   */
-  public TreasureChest() {
-    items = new ArrayList<>();
-    items.add(new Item(ItemType.POTION, "Potion of courage"));
-    items.add(new Item(ItemType.RING, "Ring of shadows"));
-    items.add(new Item(ItemType.POTION, "Potion of wisdom"));
-    items.add(new Item(ItemType.POTION, "Potion of blood"));
-    items.add(new Item(ItemType.WEAPON, "Sword of silver +1"));
-    items.add(new Item(ItemType.POTION, "Potion of rust"));
-    items.add(new Item(ItemType.POTION, "Potion of healing"));
-    items.add(new Item(ItemType.RING, "Ring of armor"));
-    items.add(new Item(ItemType.WEAPON, "Steel halberd"));
-    items.add(new Item(ItemType.WEAPON, "Dagger of poison"));
+  public PartyImpl() {
+    members = new ArrayList<>();
   }
 
-  ItemIterator iterator(ItemType itemType) {
-    return new TreasureChestItemIterator(this, itemType);
+  @Override
+  public void act(PartyMember actor, Action action) {
+    for (PartyMember member : members) {
+      if (!member.equals(actor)) {
+        member.partyAction(action);
+      }
+    }
   }
 
-  /**
-   * Get all items
-   */
-  public List<Item> getItems() {
-    return new ArrayList<>(items);
+  @Override
+  public void addMember(PartyMember member) {
+    members.add(member);
+    member.joinedParty(this);
   }
-
 }
