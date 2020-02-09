@@ -1,0 +1,33 @@
+@startuml
+
+note "pattern Observer : creer une dependance entre un objet\net des observateurs afin de les notifier lors d'une modification\npour que ces derniers mettent à jour leur état.Ici, on va mettre à\njour l'affichage du catalogue lorsque l'on modifie un vehicule.\nOn lie un vehicule et sa vue pour modifier la vue quand on modifie\nl'etat du vehicule" as N0
+
+abstract class Sujet{
++ajoute(observateur)
++retire(observateur)
++notifie()
+}
+interface Observateur{
++actualise()
+}
+class Vehicule{
+#description
+#prix
++getDescription()
++setDescription(description)
++getPrix()
++setPrix(prix)
+}
+class VueVehicule{
++actualise()
++redessine()
+}
+Sujet --> "0..* #observateurs" Observateur
+Vehicule "1 #sujet" <-- VueVehicule
+Vehicule ..|> Observateur
+Vehicule --|> Sujet
+
+note left of Sujet : for(Observateur o : observateurs)\no.actualise();
+note left of Vehicule : this.description = description;\notifie();\nou\nthis.prix=prix;\nnotifie();
+
+@enduml

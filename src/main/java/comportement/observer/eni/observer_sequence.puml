@@ -1,0 +1,18 @@
+@startuml
+autonumber "<b>0:"
+participant ": VueVehicule" as A
+activate A
+participant "sujet: Vehicule" as B
+participant "Client" as C
+
+A -> B: ajoute(observateur=this)
+activate B
+C -> B: setDescription(description="nouveau")
+activate C
+deactivate C
+B -> B: notifie()
+
+B -> A: actualise()
+A -> A: redessine()
+
+@enduml
