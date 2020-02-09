@@ -1,0 +1,51 @@
+@startuml
+
+note "pattern State permet à un objet d'adapter son\ncomportement en fonction de son etat interne.\nIci, nous allons pouvoir gerer l'etat d'une commande :\nen cours, validée, livrée" as N0
+note left of Produit : application : comportement de l'objet depend de son etat\nimplementer des condition (if/else) est trop complexe
+class Commande{
++ajouteProduit(produit)
++retireProduit(produit)
++efface()
++etatSuivant()
++getProduits()
+}
+class Produit
+
+Produit " #produits 0..n"--* Commande
+
+note left of Commande : étatCommande;\najouteProduit(produit);
+class EtatCommande{
++ajouteProduit(produit)
++retireProduit(produit)
++efface()
++etatSuivant()
+}
+Commande "1 #commande" -- "1 #etatCommande" EtatCommande
+
+together {
+class CommandeEnCours{
++ajouteProduit(produit)
++retireProduit(produit)
++efface()
++etatSuivant()
+}
+
+class CommandeValidee{
++ajouteProduit(produit)
++retireProduit(produit)
++efface()
++etatSuivant()
+}
+
+class CommandeLivree{
++ajouteProduit(produit)
++retireProduit(produit)
++efface()
++etatSuivant()
+}
+}
+EtatCommande <|-- CommandeEnCours
+EtatCommande <|-- CommandeValidee
+EtatCommande <|-- CommandeLivree
+
+@enduml
