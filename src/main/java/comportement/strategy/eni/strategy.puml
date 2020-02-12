@@ -1,0 +1,25 @@
+@startuml
+
+note "pattern Strategy permet d'adapter le comportement et les\nalgorithme d'un objet en fonction d'un besoin sans changer\nles interactions de cet objets avec les clients. On ne parle pas\nde fonctions metiers mais de fonctions techniques (memoires,\nvues, etc...).Ici, on veut choisir une algo d'affichage des vehicules\nsoit 1 par ligne ave des details, soit 3 par ligne mais moins de details.\nOn pourrait tres bien implementer les deux algo dans VueCatalogue et\nutiliser une structure conditionnelle pour choisir l'algo mais ca ferait des\nclasses tres lourdes. Idem pour le choix de l'heritage qui complexifierait\nencore davantage la hierarchie des classes." as N0
+
+class VueCatalogue{
++dessine()
+}
+note left of DessinCatalogue : Strategie -> calcule()
+
+interface DessinCatalogue{
++dessine()
+}
+VueCatalogue --> "1 #dessin" DessinCatalogue
+note left of VueCatalogue : ...\ndessin.dessine()\n(Entite -> demande())\n...
+class DessinUnVehiculeLigne{
++dessine()
+}
+class DessinTroisVehiculeLigne{
++dessine()
+}
+DessinCatalogue <|.. DessinUnVehiculeLigne
+DessinCatalogue <|..  DessinTroisVehiculeLigne
+note bottom of DessinUnVehiculeLigne : StrategieConcrete
+note bottom of DessinTroisVehiculeLigne : StrategieConcrete
+@enduml
