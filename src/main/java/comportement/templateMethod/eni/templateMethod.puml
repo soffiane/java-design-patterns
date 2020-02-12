@@ -1,0 +1,25 @@
+@startuml
+
+note "pattern templateMethod : permet de deleguer dans des sous-classe\ndes etapes d'une operation de la classe mere. Les sous-classes\nredefinissent certaines etapes de l'operation.Exemple du calcul de la\nTVA qui varie selon les pays, on aurait deux classes filles à la classe mere\nCommande : CommandeFrance et CommandeLuxembourg qui ont des calculs\nde TVA differents. " as N0
+
+class Commande{
+#montantHt
+#montantTva
+#montantTtc
++calculMontantTtc()
+#calculTva()
++affiche()
+}
+note left of Commande : calculeTva();\nmontantTtc = montantHt+montantTva;
+class CommandeFrance{
++calculTva()
+}
+note bottom of CommandeFrance : montantTva = montantHt*0.196;
+class CommandeLuxembourg{
++calculTva()
+}
+note bottom of CommandeLuxembourg : montantTva = montantHt*0.15;
+
+Commande <|-- CommandeFrance
+Commande <|-- CommandeLuxembourg
+@enduml
