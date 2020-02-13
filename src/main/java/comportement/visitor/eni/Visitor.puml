@@ -1,0 +1,52 @@
+@startuml
+
+note  "pattern Visitor construit une opération a realiser sur les\nelements d'un ensemble d'objets. On peut ainsi ajouter\nde nouvelles operations sans modifier les classes des elements.\nOn reprend ce qui a ete fait pour le pattern Composite avec\n Societe, SocieteMere et SocieteSansFiliale.\ Le pattern Visitor\npropose d'ajouter des fonctionnalités dans une classe separée(Visitor)\nChaque visiteur etablit une fonctionnalité pour + classes un introduisant\ndans ces classe une methode visite() et dont le param est le type de\nclasse a visiter. Les classes visitées implementent une methode accept(Visiteur)" as N
+abstract class Societe<<Element>>{
+#nom
+#email
+#adresse
++getNom()
+#setNom(nom)
++getEmail()
+#setEmail(email)
++getAdresse()
+#setAdresse(adresse)
++ajouteFiliale(filiale)
++accepteVisiteur(visiteur)
+}
+class SocieteSansFiliale<<ElementConcret>>{
++accepteVisiteur(visiteur)
+}
+class SocieteMere<<ElementConcret>>{
++accepteVisiteur(visiteur)
++ajouteFiliale()
+}
+
+note bottom of SocieteMere : visiteur.visite(this);\nfor(Societe f : filiales){\nf.accepteVisiteur(visiteur);
+note bottom of SocieteSansFiliale : visiteur.visite(this);
+Societe <|-- SocieteSansFiliale
+Societe <|-- SocieteMere
+SocieteMere --> "1..* #filiales" Societe
+
+interface Visiteur{
++visite(societe: SocieteSansFiliale)
++visite(societe: SocieteMere)
+}
+
+class VisiteurCalculCoutEntretien<<VisiteurConcret>>{
++visite(societe: SocieteSansFiliale)
++visite(societe: SocieteMere)
+}
+
+class VisiteurMailingCommercial<<VisiteurConcret>>{
++visite(societe: SocieteSansFiliale)
++visite(societe: SocieteMere)
+}
+
+Visiteur <|.. VisiteurCalculCoutEntretien
+Visiteur <|.. VisiteurMailingCommercial
+
+Societe ...> Visiteur
+
+note left of VisiteurMailingCommercial : mail.envoieMail(societe.getEmail().proposition);\nprinter.imprime(societe.getAdresse().proposition);
+@enduml
